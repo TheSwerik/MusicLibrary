@@ -48,8 +48,8 @@ for:
 
     for:
       - matrix:
-        only:
-          - job_name: Exe
+          only:
+            - job_name: Exe
 
         after_test:
           - ps: dotnet publish "-p:PublishProfile=$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\64bit -v:m -r:win-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
@@ -81,8 +81,8 @@ for:
               branch: master
 
       - matrix:
-        only:
-          - job_name: Nuget
+          only:
+            - job_name: Nuget
 
         deploy:
           - provider: NuGet
