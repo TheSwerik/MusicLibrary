@@ -29,7 +29,7 @@ build:
 for:
   - matrix:
       only:
-        - job_name: nuget
+        - job_name: Nuget
     build:
       publish_nuget: true
 
