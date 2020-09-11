@@ -9,6 +9,7 @@ namespace Test
 
         internal static void Main(string[] args)
         {
+            Console.CursorVisible = false;
             var songs = new List<Action> {LoopSettings, Song.AlleMeineEntchen, Song.MarcoBros};
             while (true)
             {
@@ -19,7 +20,7 @@ namespace Test
                     Console.WriteLine($"[{i + 1}]\t{songs[i].Method.Name}");
                 Console.WriteLine();
 
-                var input = Console.ReadKey().KeyChar - '0';
+                var input = ReadInput() - '0';
                 ClearLine();
 
                 if (input == 0) Environment.Exit(0);
@@ -49,12 +50,12 @@ namespace Test
             {
                 ClearConsole();
                 Console.WriteLine("Loop? [y/n]");
-                var input = Console.ReadKey().KeyChar;
+                var input = ReadInput();
                 if (input != 'y' && input != 'n') continue;
                 if (input == 'n') return;
 
                 Console.WriteLine("\rHow Often? [0 = infinitely]");
-                _loopCount = Console.ReadKey().KeyChar - '0';
+                _loopCount = ReadInput() - '0';
                 if (_loopCount == 0) _loopCount = int.MaxValue;
                 if (_loopCount > 0) return;
 
@@ -74,5 +75,13 @@ namespace Test
         }
 
         private static void ClearLine() { Console.Write($"\r{new string(' ', Console.BufferWidth - 1)}\r"); }
+
+        private static char ReadInput()
+        {
+            Console.CursorVisible = true;
+            var input = Console.ReadKey().KeyChar;
+            Console.CursorVisible = false;
+            return input;
+        }
     }
 }
