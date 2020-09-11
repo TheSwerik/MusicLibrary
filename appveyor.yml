@@ -52,9 +52,11 @@ for:
       - ps: ls Publish/bin/64bit
       - ps: ren "Publish/bin/64bit/$($env:project_name).exe" "$($env:project_name).exe"
       - ps: dotnet publish "$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\linux -v:m -r:linux-x64 --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
-      - ps: dotnet publish "$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\osx   -v:m -r:osx-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
-      - ps: ren "Publish/bin/osx/$($env:project_name)" "$($env:application_name)
+      - ps: ls "Publish/bin/linux"
       - ps: ren "Publish/bin/linux/$($env:project_name)" "$($env:application_name)"
+      - ps: dotnet publish "$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\osx   -v:m -r:osx-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
+      - ps: ls "Publish/bin/osx"
+      - ps: ren "Publish/bin/osx/$($env:project_name)" "$($env:application_name)
 
     artifacts:
       - path: /Publish/bin/64bit/$(application_name).exe
