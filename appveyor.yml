@@ -24,16 +24,9 @@ build:
   project: $(project_name)/$(project_name).csproj
   verbosity: minimal
   parallel: true
-  publish_nuget: false
+  publish_nuget: true
 
-dotnet_csproj:
-  patch: true
-  file: '**\*.csproj'
-  version: '$(my_version_number)'
-  package_version: '$(my_version_number)'
-  assembly_version: '$(my_version_number)'
-  file_version: '$(my_version_number)'
-  informational_version: '$(my_version_number)'
+
 
 for:
   - matrix:
@@ -42,6 +35,15 @@ for:
     branches:
       only:
         - master
+
+    dotnet_csproj:
+      patch: true
+      file: '**\*.csproj'
+      version: '$(my_version_number)'
+      package_version: '$(my_version_number)'
+      assembly_version: '$(my_version_number)'
+      file_version: '$(my_version_number)'
+      informational_version: '$(my_version_number)'
 
     before_build:
       - 'curl -H "Authorization: token %download_token%" -H "Accept: application/vnd.github.v3.raw" -O -L "%download_link%/developer-certificate.pfx"'
@@ -84,6 +86,15 @@ for:
       only:
         - master
      
+    dotnet_csproj:
+      patch: true
+      file: '**\*.csproj'
+      version: '$(my_version_number)'
+      package_version: '$(my_version_number)'
+      assembly_version: '$(my_version_number)'
+      file_version: '$(my_version_number)'
+      informational_version: '$(my_version_number)'
+    
     build:
       publish_nuget: true
       
