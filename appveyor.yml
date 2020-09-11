@@ -83,6 +83,9 @@ for:
       only:
         - master
      
+    build:
+      - publish_nuget: true
+      
     after_build:
       - ps: cd Music/bin/Release/netcoreapp3.1
       - ps: ls
