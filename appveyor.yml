@@ -20,7 +20,6 @@ configuration: Release
 before_build:
   - ps: nuget restore -Verbosity quiet
 
-
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
@@ -49,7 +48,7 @@ for:
     
     after_test:
       - ps: echo $($env:project_name)
-      - ps: dotnet publish "-p:PublishProfile=$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\64bit -v:m -r:win-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
+      - ps: dotnet publish "-p:PublishProfile=Test\Test.csproj" -c:Release -o:Publish\bin\64bit -v:m -r:win-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
       - ps: dotnet publish "-p:PublishProfile=$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\linux -v:m -r:linux-x64 --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
       - ps: dotnet publish "-p:PublishProfile=$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\osx   -v:m -r:osx-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
       - ps: cd Publish\bin\osx
@@ -89,10 +88,6 @@ for:
       verbosity: minimal
       parallel: true
       publish_nuget: true
-      
-    after_build:
-      - ps: cd $env:project_name2/bin/Release/netcoreapp3.1
-      - ps: ls
 
     deploy:
       - provider: NuGet
