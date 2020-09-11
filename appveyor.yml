@@ -18,7 +18,6 @@ skip_tags: true
 configuration: Release
 
 before_build:
-  - 'curl -H "Authorization: token %download_token%" -H "Accept: application/vnd.github.v3.raw" -O -L "%download_link%/developer-certificate.pfx"'
   - ps: nuget restore -Verbosity quiet
 
 build:
@@ -42,6 +41,9 @@ for:
     branches:
       only:
         - master
+
+    before_build:
+      - 'curl -H "Authorization: token %download_token%" -H "Accept: application/vnd.github.v3.raw" -O -L "%download_link%/developer-certificate.pfx"'
 
     after_test:
       - ps: dotnet publish "-p:PublishProfile=$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\64bit -v:m -r:win-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
