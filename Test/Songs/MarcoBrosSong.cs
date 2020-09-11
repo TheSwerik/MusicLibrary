@@ -82,10 +82,8 @@ namespace Test.Songs
 
         private static void BassLine2()
         {
-            Player.PlayNote(Note.G.Frequency(1 + _octaveShift), Duration.Eighth);
-            Player.Pause(Duration.Eighth);
-            Player.PlayNote(Note.D.Frequency(1 + _octaveShift), Duration.Eighth);
-            Player.Pause(Duration.Eighth);
+            Player.PlayNote(Note.G.Frequency(1 + _octaveShift), Duration.Quarter);
+            Player.PlayNote(Note.D.Frequency(1 + _octaveShift), Duration.Quarter);
         }
 
         #endregion
