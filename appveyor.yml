@@ -83,6 +83,9 @@ for:
             
     build:
       publish_nuget: true
+      
+    after_test:
+      -ps: ls
 
     deploy:
       - provider: NuGet
