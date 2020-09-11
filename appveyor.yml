@@ -1,12 +1,12 @@
 ﻿environment:
   my_version_number: 1.0.0          # DONT FORGET TO CHANGE IS IN THE ISS FILE
   application_name: Music           # DONT FORGET TO CHANGE IS IN THE ISS FILE
-  project_name: Test
-  project_name2: Music
 
   matrix:
     - job_name: Nuget
+      project_name: Music
     - job_name: Exe
+      project_name: Test
 
 matrix:
   fast_finish: true
@@ -22,12 +22,18 @@ before_build:
 
 dotnet_csproj:
   patch: true
-  file: '**\*.csproj'
+  file: '$(project_name)\$(project_name).csproj'
   version: '$(my_version_number)'
   package_version: '$(my_version_number)'
   assembly_version: '$(my_version_number)'
   file_version: '$(my_version_number)'
   informational_version: '$(my_version_number)'
+
+build:
+  project: $(project_name)/$(project_name).csproj
+  verbosity: minimal
+  parallel: true
+  publish_nuget: true
 
 for:
   - matrix:
@@ -39,18 +45,11 @@ for:
 
     before_build:
       - 'curl -H "Authorization: token %download_token%" -H "Accept: application/vnd.github.v3.raw" -O -L "%download_link%/developer-certificate.pfx"'
-      - ps: nuget restore -Verbosity quiet
-
-    build:
-      project: Test/Test.csproj
-      verbosity: minimal
-      parallel: true
     
     after_test:
-      - ps: echo $($env:project_name)
-      - ps: dotnet publish Test\Test.csproj -c:Release -o:Publish\bin\64bit -v:m -r:win-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
-      - ps: dotnet publish "-p:PublishProfile=$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\linux -v:m -r:linux-x64 --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
-      - ps: dotnet publish "-p:PublishProfile=$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\osx   -v:m -r:osx-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
+      - ps: dotnet publish "$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\64bit -v:m -r:win-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
+      - ps: dotnet publish "$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\linux -v:m -r:linux-x64 --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
+      - ps: dotnet publish "$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\osx   -v:m -r:osx-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
       - ps: cd Publish\bin\osx
       - ps: ls
       - ps: cd ../linux
@@ -84,11 +83,8 @@ for:
         - master
 
     build:
-      project: $(project_name2)/$(project_name2).csproj
-      verbosity: minimal
-      parallel: true
       publish_nuget: true
-
+    
     deploy:
       - provider: NuGet
         api_key:
