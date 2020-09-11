@@ -24,6 +24,7 @@ build:
   project: $(project_name)/$(project_name).csproj
   verbosity: minimal
   parallel: true
+  publish_nuget: true
 
 dotnet_csproj:
   patch: true
@@ -81,10 +82,7 @@ for:
     branches:
       only:
         - master
-            
-    build:
-      publish_nuget: true
-      
+     
     after_build:
       - ps: cd Music/bin/Release/netcoreapp3.1
       - ps: ls
