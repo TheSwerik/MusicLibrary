@@ -1,18 +1,17 @@
-﻿namespace Music
+﻿using MusicLibrary;
+
+namespace Music
 {
     internal static class Program
     {
         internal static void Main(string[] args)
         {
-            // Console.Beep(300, 400);
-            // Console.Beep(400, 400);
-            // Console.Beep(500, 400);
-            // Console.Beep(37, 400);
-            // Console.Beep(300, 400);
-            // Console.Beep(400, 400);
-            // Console.Beep(500, 400);
-            var scraper = new TableScraper();
-            scraper.Scrape();
+            MusicLibrary.Music.PlayNote(Note.C2, Duration.Quarter);
+            MusicLibrary.Music.PlayNote(Note.D2, Duration.Quarter);
+            MusicLibrary.Music.PlayNote(Note.E2, Duration.Quarter);
+            MusicLibrary.Music.PlayNote(Note.F2, Duration.Quarter);
+            MusicLibrary.Music.PlayNote(Note.G2, Duration.Quarter);
+            MusicLibrary.Music.PlayNote(Note.G2, Duration.Quarter);
         }
     }
 }
