@@ -58,9 +58,9 @@ for:
     artifacts:
       - path: /Publish/bin/64bit/$(application_name).exe
         name: WinInstaller
-      - path: /Publish/bin/osx/$(application_name)
+      - path: /Publish/bin/osx/$(application_name)_mac
         name: MacInstaller
-      - path: /Publish/bin/linux/$(application_name)
+      - path: /Publish/bin/linux/$(application_name)_linux
         name: LinuxInstaller
 
     deploy:
