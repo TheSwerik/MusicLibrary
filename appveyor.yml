@@ -79,19 +79,19 @@ for:
         on:
           branch: master
 
-    - matrix:
-        only:
-          - job_name: Nuget
+  - matrix:
+      only:
+        - job_name: Nuget
 
-      deploy:
-        - provider: NuGet
-          api_key:
-            secure: dvBoUwBIXmJhZm9jD5jxnU5FjrHji0KMbTMxgui4jLBnUbFUkBoDN81yuhevoOFo
-          artifact: /.*(\.|\.s)nupkg/
-  
-        - provider: NuGet
-          api_key:
-            secure: t+q9dcBPFxzZdmdGxIahNaP0GHE90XdbEHHVMrmroJpFSCkM3d3tQ2QOtPYQTBpu
-          server: https://nuget.pkg.github.com/TheSwerik/index.json
-          artifact: /.*(\.|\.s)nupkg/
-          username: TheSwerik
+    deploy:
+      - provider: NuGet
+        api_key:
+          secure: dvBoUwBIXmJhZm9jD5jxnU5FjrHji0KMbTMxgui4jLBnUbFUkBoDN81yuhevoOFo
+        artifact: /.*(\.|\.s)nupkg/
+
+      - provider: NuGet
+        api_key:
+          secure: t+q9dcBPFxzZdmdGxIahNaP0GHE90XdbEHHVMrmroJpFSCkM3d3tQ2QOtPYQTBpu
+        server: https://nuget.pkg.github.com/TheSwerik/index.json
+        artifact: /.*(\.|\.s)nupkg/
+        username: TheSwerik
