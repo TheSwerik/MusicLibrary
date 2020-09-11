@@ -12,7 +12,7 @@ namespace Test
             var songs = new List<Action> {LoopSettings, Song.AlleMeineEntchen, Song.MarcoBros};
             while (true)
             {
-                Console.WriteLine(new string('\n', 20));
+                ClearConsole();
                 Console.WriteLine("Select a Song:");
                 Console.WriteLine("[0]\tQuit");
                 for (var i = 0; i < songs.Count; i++)
@@ -20,7 +20,7 @@ namespace Test
                 Console.WriteLine();
 
                 var input = Console.ReadKey().KeyChar - '0';
-                Console.Write("\r      \r");
+                ClearLine();
 
                 if (input == 0) Environment.Exit(0);
                 if (input <= 0 || input > songs.Count) continue;
@@ -35,7 +35,7 @@ namespace Test
                     for (var i = 0; i < _loopCount; i++)
                     {
                         if (input == 1 && i > 0) return;
-                        Console.Write($"\r{new string(' ', 100)}\r");
+                        ClearLine();
                         Console.Write("Now Playing: {0}\tIteration: {1}", songs[input - 1].Method.Name, i + 1);
                         songs[input - 1].Invoke();
                     }
@@ -47,8 +47,7 @@ namespace Test
         {
             while (true)
             {
-                Console.Write($"\r{new string(' ', 100)}\r");
-                Console.WriteLine(new string('\n', 20));
+                ClearConsole();
                 Console.WriteLine("Loop? [y/n]");
                 var input = Console.ReadKey().KeyChar;
                 if (input != 'y' && input != 'n') continue;
@@ -62,5 +61,18 @@ namespace Test
                 if (_loopCount < 0) _loopCount = 0;
             }
         }
+
+        private static void ClearConsole()
+        {
+            for (var i = 0; i < 100; i++)
+            {
+                ClearLine();
+                Console.SetCursorPosition(0, i);
+            }
+
+            Console.SetCursorPosition(0, 0);
+        }
+
+        private static void ClearLine() { Console.Write($"\r{new string(' ', Console.BufferWidth - 1)}\r"); }
     }
 }
