@@ -1,6 +1,6 @@
 ﻿environment:
   my_version_number: 1.0.0          # DONT FORGET TO CHANGE IS IN THE ISS FILE
-  application_name: Music           # DONT FORGET TO CHANGE IS IN THE ISS FILE
+  application_name: MusicExample           # DONT FORGET TO CHANGE IS IN THE ISS FILE
 
   matrix:
     - job_name: Nuget
@@ -49,19 +49,18 @@ for:
     
     after_test:
       - ps: dotnet publish "$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\64bit -v:m -r:win-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
+      - ps: ren /Publish/bin/64bit/$(project_name).exe $(application_name).exe
       - ps: dotnet publish "$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\linux -v:m -r:linux-x64 --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
+      - ps: ren /Publish/bin/osx/$(project_name).exe $(application_name).exe
       - ps: dotnet publish "$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\osx   -v:m -r:osx-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
-      - ps: cd Publish\bin\osx
-      - ps: ls
-      - ps: cd ../linux
-      - ps: ls
+      - ps: ren /Publish/bin/linux/$(project_name).exe $(application_name).exe
 
     artifacts:
       - path: /Publish/bin/64bit/$(application_name).exe
         name: WinInstaller
-      - path: /Publish/bin/osx/$(application_name).*
+      - path: /Publish/bin/osx/$(application_name)
         name: MacInstaller
-      - path: /Publish/bin/linux/$(application_name).*
+      - path: /Publish/bin/linux/$(application_name)
         name: LinuxInstaller
 
     deploy:
