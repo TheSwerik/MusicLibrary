@@ -20,13 +20,15 @@ configuration: Release
 before_build:
   - ps: nuget restore -Verbosity quiet
 
-build:
-  project: $(project_name)/$(project_name).csproj
-  verbosity: minimal
-  parallel: true
-  publish_nuget: true
 
-
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '$(my_version_number)'
+  package_version: '$(my_version_number)'
+  assembly_version: '$(my_version_number)'
+  file_version: '$(my_version_number)'
+  informational_version: '$(my_version_number)'
 
 for:
   - matrix:
@@ -36,19 +38,15 @@ for:
       only:
         - master
 
-    dotnet_csproj:
-      patch: true
-      file: '**\*.csproj'
-      version: '$(my_version_number)'
-      package_version: '$(my_version_number)'
-      assembly_version: '$(my_version_number)'
-      file_version: '$(my_version_number)'
-      informational_version: '$(my_version_number)'
-
     before_build:
       - 'curl -H "Authorization: token %download_token%" -H "Accept: application/vnd.github.v3.raw" -O -L "%download_link%/developer-certificate.pfx"'
       - ps: nuget restore -Verbosity quiet
 
+    build:
+      project: $(project_name)/$(project_name).csproj
+      verbosity: minimal
+      parallel: true
+    
     after_test:
       - ps: echo $($env:project_name)
       - ps: dotnet publish "-p:PublishProfile=$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\64bit -v:m -r:win-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
@@ -85,17 +83,11 @@ for:
     branches:
       only:
         - master
-     
-    dotnet_csproj:
-      patch: true
-      file: '**\*.csproj'
-      version: '$(my_version_number)'
-      package_version: '$(my_version_number)'
-      assembly_version: '$(my_version_number)'
-      file_version: '$(my_version_number)'
-      informational_version: '$(my_version_number)'
-    
+
     build:
+      project: $(project_name)/$(project_name).csproj
+      verbosity: minimal
+      parallel: true
       publish_nuget: true
       
     after_build:
