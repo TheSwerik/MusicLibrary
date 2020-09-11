@@ -42,7 +42,7 @@ for:
       - ps: nuget restore -Verbosity quiet
 
     build:
-      project: $(project_name)/$(project_name).csproj
+      project: Test/Test.csproj
       verbosity: minimal
       parallel: true
     
