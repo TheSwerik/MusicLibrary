@@ -41,7 +41,7 @@ namespace Music
             MusicLibrary.Music.PlayNote(Note.D, Duration.Quarter);
             MusicLibrary.Music.PlayNote(Note.D, Duration.Quarter);
             MusicLibrary.Music.PlayNote(Note.D, Duration.Quarter);
-            MusicLibrary.Music.PlayNote(Note.C, Duration.Half);
+            MusicLibrary.Music.PlayNote(Note.C, Duration.Quarter);
         }
     }
 }
