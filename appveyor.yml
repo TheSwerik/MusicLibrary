@@ -26,29 +26,22 @@ build:
   verbosity: minimal
   parallel: true
 
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '$(my_version_number)'
+  package_version: '$(my_version_number)'
+  assembly_version: '$(my_version_number)'
+  file_version: '$(my_version_number)'
+  informational_version: '$(my_version_number)'
+
 for:
   - matrix:
       only:
-        - job_name: Nuget
-    build:
-      publish_nuget: true
-
-  - branches:
+        - job_name: Exe
+    branches:
       only:
         - master
-
-    dotnet_csproj:
-      patch: true
-      file: '**\*.csproj'
-      version: '$(my_version_number)'
-      package_version: '$(my_version_number)'
-      assembly_version: '$(my_version_number)'
-      file_version: '$(my_version_number)'
-      informational_version: '$(my_version_number)'
-
-    matrix:
-      only:
-        - job_name: Exe
 
     after_test:
       - ps: dotnet publish "-p:PublishProfile=$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\64bit -v:m -r:win-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
@@ -82,6 +75,12 @@ for:
   - matrix:
       only:
         - job_name: Nuget
+    branches:
+      only:
+        - master
+            
+    build:
+      publish_nuget: true
 
     deploy:
       - provider: NuGet
