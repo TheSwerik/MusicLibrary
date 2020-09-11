@@ -4,7 +4,7 @@ namespace Test.Songs
 {
     internal static class MarcoBrosSong
     {
-        private static int OctaveShift = 1;
+        private static int _octaveShift = 1;
 
         internal static void Song()
         {
@@ -25,10 +25,10 @@ namespace Test.Songs
                 for (var i = 0; i < 2; i++) Melody1();
                 Melody1_3();
 
-                OctaveShift++;
+                _octaveShift++;
             }
 
-            OctaveShift--;
+            _octaveShift -= 2;
 
             for (var j = 0; j < 2; j++)
             {
@@ -37,10 +37,10 @@ namespace Test.Songs
                 Melody2(4);
                 Melody2(2);
 
-                OctaveShift++;
+                _octaveShift++;
             }
 
-            OctaveShift--;
+            _octaveShift -= 2;
 
             for (var i = 0; i < 6; i++) BassLine2();
         }
@@ -58,22 +58,22 @@ namespace Test.Songs
                 d = Note.As;
             }
 
-            Player.PlayNote(d.Frequency(3 + OctaveShift - localOctaveShift), Duration.Eighth);
+            Player.PlayNote(d.Frequency(3 + _octaveShift - localOctaveShift), Duration.Eighth);
             Player.Pause(Duration.Eighth);
-            Player.PlayNote(d.Frequency(3 + OctaveShift - localOctaveShift), Duration.Eighth);
+            Player.PlayNote(d.Frequency(3 + _octaveShift - localOctaveShift), Duration.Eighth);
             Player.Pause(Duration.Eighth);
-            Player.PlayNote(d.Frequency(3 + OctaveShift - localOctaveShift), Duration.Eighth);
+            Player.PlayNote(d.Frequency(3 + _octaveShift - localOctaveShift), Duration.Eighth);
             Player.Pause(Duration.Eighth);
-            Player.PlayNote(g.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(d.Frequency(3 + OctaveShift - localOctaveShift), Duration.Eighth);
+            Player.PlayNote(g.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(d.Frequency(3 + _octaveShift - localOctaveShift), Duration.Eighth);
             Player.Pause(Duration.Eighth);
-            Player.PlayNote(d.Frequency(3 + OctaveShift - localOctaveShift), Duration.Eighth);
+            Player.PlayNote(d.Frequency(3 + _octaveShift - localOctaveShift), Duration.Eighth);
             Player.Pause(Duration.Eighth);
-            Player.PlayNote(d.Frequency(3 + OctaveShift - localOctaveShift), Duration.Eighth);
-            Player.PlayNote(g.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(d.Frequency(3 + OctaveShift - localOctaveShift), Duration.Eighth);
-            Player.PlayNote(g.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(d.Frequency(3 + OctaveShift - localOctaveShift), Duration.Eighth);
+            Player.PlayNote(d.Frequency(3 + _octaveShift - localOctaveShift), Duration.Eighth);
+            Player.PlayNote(g.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(d.Frequency(3 + _octaveShift - localOctaveShift), Duration.Eighth);
+            Player.PlayNote(g.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(d.Frequency(3 + _octaveShift - localOctaveShift), Duration.Eighth);
         }
 
         #endregion
@@ -82,9 +82,9 @@ namespace Test.Songs
 
         private static void BassLine2()
         {
-            Player.PlayNote(Note.G.Frequency(1 + OctaveShift), Duration.Eighth);
+            Player.PlayNote(Note.G.Frequency(1 + _octaveShift), Duration.Eighth);
             Player.Pause(Duration.Eighth);
-            Player.PlayNote(Note.D.Frequency(1 + OctaveShift), Duration.Eighth);
+            Player.PlayNote(Note.D.Frequency(1 + _octaveShift), Duration.Eighth);
             Player.Pause(Duration.Eighth);
         }
 
@@ -94,18 +94,18 @@ namespace Test.Songs
 
         private static void BassLine1()
         {
-            Player.PlayNote(Note.G.Frequency(1 + OctaveShift), Duration.Quarter);
-            Player.PlayNote(Note.D.Frequency(1 + OctaveShift), Duration.Quarter);
-            Player.PlayNote(Note.A.Frequency(1 + OctaveShift), Duration.Quarter);
-            Player.PlayNote(Note.E.Frequency(1 + OctaveShift), Duration.Quarter);
+            Player.PlayNote(Note.G.Frequency(1 + _octaveShift), Duration.Quarter);
+            Player.PlayNote(Note.D.Frequency(1 + _octaveShift), Duration.Quarter);
+            Player.PlayNote(Note.A.Frequency(1 + _octaveShift), Duration.Quarter);
+            Player.PlayNote(Note.E.Frequency(1 + _octaveShift), Duration.Quarter);
         }
 
         private static void BassLine1Short()
         {
-            Player.PlayNote(Note.G.Frequency(1 + OctaveShift), Duration.Quarter);
-            Player.PlayNote(Note.D.Frequency(1 + OctaveShift), Duration.Quarter);
-            Player.PlayNote(Note.A.Frequency(1 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.E.Frequency(1 + OctaveShift), Duration.Half);
+            Player.PlayNote(Note.G.Frequency(1 + _octaveShift), Duration.Quarter);
+            Player.PlayNote(Note.D.Frequency(1 + _octaveShift), Duration.Quarter);
+            Player.PlayNote(Note.A.Frequency(1 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.E.Frequency(1 + _octaveShift), Duration.Half);
         }
 
         #endregion
@@ -114,41 +114,41 @@ namespace Test.Songs
 
         private static void Melody1()
         {
-            Player.PlayNote(Note.A.Frequency(2 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.C.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.D.Frequency(3 + OctaveShift), Duration.Eighth);
+            Player.PlayNote(Note.A.Frequency(2 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.C.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.D.Frequency(3 + _octaveShift), Duration.Eighth);
             Player.Pause(Duration.Eighth);
         }
 
         private static void Melody1_1()
         {
-            Player.PlayNote(Note.A.Frequency(2 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.C.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.D.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.G.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.F.Frequency(3 + OctaveShift), Duration.Quarter);
+            Player.PlayNote(Note.A.Frequency(2 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.C.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.D.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.G.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.F.Frequency(3 + _octaveShift), Duration.Quarter);
             Player.Pause(Duration.Quarter);
         }
 
         private static void Melody1_2()
         {
-            Player.PlayNote(Note.A.Frequency(2 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.C.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.D.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.C.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.A.Frequency(2 + OctaveShift), Duration.Quarter);
+            Player.PlayNote(Note.A.Frequency(2 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.C.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.D.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.C.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.A.Frequency(2 + _octaveShift), Duration.Quarter);
             Player.Pause(Duration.Quarter);
         }
 
         private static void Melody1_3()
         {
-            Player.PlayNote(Note.A.Frequency(2 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.C.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.D.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.C.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.F.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.D.Frequency(3 + OctaveShift), Duration.Eighth);
-            Player.PlayNote(Note.D.Frequency(3 + OctaveShift), Duration.Eighth);
+            Player.PlayNote(Note.A.Frequency(2 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.C.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.D.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.C.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.F.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.D.Frequency(3 + _octaveShift), Duration.Eighth);
+            Player.PlayNote(Note.D.Frequency(3 + _octaveShift), Duration.Eighth);
             Player.Pause(Duration.Eighth);
         }
 
