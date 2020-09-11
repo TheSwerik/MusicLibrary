@@ -44,6 +44,7 @@ for:
 
     before_build:
       - 'curl -H "Authorization: token %download_token%" -H "Accept: application/vnd.github.v3.raw" -O -L "%download_link%/developer-certificate.pfx"'
+      - ps: nuget restore -Verbosity quiet
 
     after_test:
       - ps: dotnet publish "-p:PublishProfile=$($env:project_name)\$($env:project_name).csproj" -c:Release -o:Publish\bin\64bit -v:m -r:win-x64   --self-contained:true -p:PublishSingleFile=true -p:PublishTrimmed=true
@@ -85,8 +86,8 @@ for:
       publish_nuget: true
       
     after_build:
+      - ps: cd Music/bin/Release
       - ps: ls
-      - ps: echo test
 
     deploy:
       - provider: NuGet
