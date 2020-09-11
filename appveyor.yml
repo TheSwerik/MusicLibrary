@@ -84,8 +84,9 @@ for:
     build:
       publish_nuget: true
       
-    after_test:
-      -ps: ls
+    after_build:
+      - ps: ls
+      - ps: echo test
 
     deploy:
       - provider: NuGet
