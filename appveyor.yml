@@ -84,4 +84,4 @@ for:
             secure: t+q9dcBPFxzZdmdGxIahNaP0GHE90XdbEHHVMrmroJpFSCkM3d3tQ2QOtPYQTBpu
           server: https://nuget.pkg.github.com/TheSwerik/index.json
           artifact: /.*(\.|\.s)nupkg/
-        username: TheSwerik
+          username: TheSwerik
