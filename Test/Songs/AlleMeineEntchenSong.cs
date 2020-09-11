@@ -1,10 +1,10 @@
 ﻿using Music;
 
-namespace Test
+namespace Test.Songs
 {
-    internal static class Songs
+    internal static class AlleMeineEntchenSong
     {
-        internal static void AlleMeineEntchen()
+        internal static void Song()
         {
             Player.Bpm = 180;
             Player.PlayNote(Note.C, Duration.Quarter);

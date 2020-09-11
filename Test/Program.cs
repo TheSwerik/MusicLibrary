@@ -7,7 +7,10 @@ namespace Test
     {
         internal static void Main(string[] args)
         {
-            var songs = new List<Action> {Songs.AlleMeineEntchen, Songs.AlleMeineEntchen};
+            Song.MarcoBros();
+            Environment.Exit(0);
+
+            var songs = new List<Action> {Song.AlleMeineEntchen, Song.MarcoBros};
             while (true)
             {
                 Console.WriteLine("\n\n\n\n\n\n\n\n\n");

@@ -10,7 +10,7 @@ namespace Music
         public static double Frequency(this Note note, int octave = 4)
         {
             if (octave < 0 && octave > 12) throw new ArgumentException("Octave has to be between 0 and 12");
-            return A4Frequency * Math.Pow(2, (int) note * Step + 12 * (octave - 4));
+            return A4Frequency * Math.Pow(2, ((int) note + 12 * (octave - 4)) * Step);
         }
     }
 
