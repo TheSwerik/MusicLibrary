@@ -7,7 +7,10 @@
 
     <ItemGroup>
         <PackageReference Include="HtmlAgilityPack" Version="1.11.24"/>
-        <ProjectReference Include="../MusicLibrary/MusicLibrary.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Music\Music.csproj"/>
     </ItemGroup>
 
 </Project>

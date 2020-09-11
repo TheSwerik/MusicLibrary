@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading;
 
-namespace MusicLibrary
+namespace Music
 {
-    public static class Music
+    public static class Player
     {
         public static int Bpm = 120;
-        public static double Bps => (double) Bpm / 60;
+        internal static double Bps => (double) Bpm / 60;
 
         #region Pause
 

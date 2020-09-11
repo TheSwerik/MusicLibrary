@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MusicLibrary
+namespace Music
 {
     public static class NoteMethods
     {
