@@ -31,7 +31,7 @@ for:
       only:
         - job_name: nuget
     build:
-      - publish_nuget: true
+      publish_nuget: true
 
   - branches:
       only:
