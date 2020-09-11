@@ -91,7 +91,7 @@ for:
       publish_nuget: true
       
     after_build:
-      - ps: cd $($env:project_name2)/bin/Release/netcoreapp3.1
+      - ps: cd $env:project_name2/bin/Release/netcoreapp3.1
       - ps: ls
 
     deploy:
