@@ -1,12 +1,12 @@
 ﻿environment:
   my_version_number: 1.0.0          # DONT FORGET TO CHANGE IS IN THE ISS FILE
   application_name: Music           # DONT FORGET TO CHANGE IS IN THE ISS FILE
+  project_name: Test
+  project_name2: Music
 
   matrix:
     - job_name: Nuget
-      project_name: Music
     - job_name: Exe
-      project_name: Test
 
 matrix:
   fast_finish: true
@@ -85,13 +85,13 @@ for:
         - master
 
     build:
-      project: $(project_name)/$(project_name).csproj
+      project: $(project_name2)/$(project_name2).csproj
       verbosity: minimal
       parallel: true
       publish_nuget: true
       
     after_build:
-      - ps: cd Music/bin/Release/netcoreapp3.1
+      - ps: cd $(project_name2)/bin/Release/netcoreapp3.1
       - ps: ls
 
     deploy:
