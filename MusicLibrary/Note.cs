@@ -1,57 +1,38 @@
-﻿namespace MusicLibrary
+﻿using System;
+
+namespace MusicLibrary
 {
+    public static class NoteMethods
+    {
+        private const double Step = 1.0 / 12.0;
+        public static double A4Frequency = 440;
+
+        public static double Frequency(this Note note, int octave = 4)
+        {
+            if (octave < 0 && octave > 12) throw new ArgumentException("Octave has to be between 0 and 12");
+            return A4Frequency * Math.Pow(2, (int) note * Step + 12 * (octave - 4));
+        }
+    }
+
     public enum Note
     {
-        C0 = 16,
-        Cs0 = 17,
-        Db0 = Cs0,
-        D0 = 18,
-        Ds0 = 19,
-        Eb0 = Ds0,
-        E0 = 20,
-        F0 = 21,
-        Fs0 = 23,
-        Gb0 = Fs0,
-        G0 = 24,
-        Gs0 = 26,
-        Ab0 = Gs0,
-        A0 = 27,
-        As0 = 29,
-        Bb0 = As0,
-        B0 = 31,
-        C1 = 33,
-        Cs1 = 34,
-        Db1 = Cs1,
-        D1 = 37,
-        Ds1 = 39,
-        Eb1 = Ds1,
-        E1 = 41,
-        F1 = 43,
-        Fs1 = 46,
-        Gb1 = Fs1,
-        G1 = 49,
-        Gs1 = 52,
-        Ab1 = Gs1,
-        A1 = 55,
-        As1 = 58,
-        Bb1 = As1,
-        B1 = 62,
-        C2 = 65,
-        Cs2 = 69,
-        Db2 = Cs1,
-        D2 = 73,
-        Ds2 = 78,
-        Eb2 = Ds1,
-        E2 = 82,
-        F2 = 87,
-        Fs2 = 92,
-        Gb2 = Fs1,
-        G2 = 98,
-        Gs2 = 104,
-        Ab2 = Gs1,
-        A2 = 110,
-        As2 = 116,
-        Bb2 = As1,
-        B2 = 123
+        C = -9,
+        Cs = -8,
+        Db = Cs,
+        D = -7,
+        Ds = -6,
+        Eb = Ds,
+        E = -5,
+        F = -4,
+        Fs = -3,
+        Gb = Fs,
+        G = -2,
+        Gs = -1,
+        Ab = Gs,
+        A = 0,
+        As = 1,
+        Bb = As,
+        B = 2,
+        H = B
     }
 }
