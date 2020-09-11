@@ -46,7 +46,7 @@ for:
       file_version: '$(my_version_number)'
       informational_version: '$(my_version_number)'
 
-    for:
+#    for:
       - matrix:
           only:
             - job_name: Exe
