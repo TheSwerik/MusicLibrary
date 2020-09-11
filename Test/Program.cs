@@ -64,7 +64,7 @@ namespace Test
 
         private static void ClearConsole()
         {
-            for (var i = 0; i < 100; i++)
+            for (var i = 0; i < Console.WindowHeight - 1; i++)
             {
                 ClearLine();
                 Console.SetCursorPosition(0, i);
