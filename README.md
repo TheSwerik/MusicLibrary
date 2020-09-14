@@ -1,6 +1,8 @@
 # MusicLibrary ![Badge](https://ci.appveyor.com/api/projects/status/8j0g8ah3rlo32jbu?svg=true)
 Play Music with the Beep of Windows or your Motherboard (if it supports it).
 
+Get it on [nuget.org](https://www.nuget.org/packages/Music/)!
+
 The Music Example is an Example Application with a Console Menu and 2 Example Songs.
 
 Usage:
